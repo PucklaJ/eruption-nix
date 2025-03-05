@@ -1,6 +1,4 @@
 let
-    # rustc version 1.78.0
-    # nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/archive/05bbf675397d5366259409139039af8077d695ce.tar.gz";
     pkgs = import <nixpkgs> { config = {}; overlays = []; };
     coreutils = pkgs."coreutils-full";
 in
@@ -127,6 +125,5 @@ rec {
         "eruption/audio-proxy.conf".source = "${eruption}/etc/eruption/audio-proxy.conf";
         "eruption/process-monitor.conf".source = "${eruption}/etc/eruption/process-monitor.conf";
         "eruption/profile.d/eruption.sh".source = "${eruption}/etc/eruption/profile.d/eruption.sh";
-        "polkit-1/actions/org.eruption.policy".source = "${eruption}/share/polkit-1/actions/org.eruption.policy";
     };
 }
