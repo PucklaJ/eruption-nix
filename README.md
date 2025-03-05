@@ -9,12 +9,12 @@ To set eruption up on NixOS you need to add the following to your nixos `configu
 ```nix
 { config, pkgs, ... }:
 let
-  eruption = import fetchFromGithub {
+  eruption = import (pkgs.fetchFromGitHub {
     owner = "PucklaJ";
     repo = "eruption-nix";
-    rev = "sdlokfjsdoikfsfikosfoiksdjfoiksdfjsikfj";
-    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-  };
+    rev = "bf98eac32eaba0c7bf04d6a634d6858822af2890";
+    sha256 = "sha256-KDffFn2RAiUY3jNfdS1ofbqBDZeVpVgXByI1PhRqfSk=";
+  });
 in
 {
   # D-Bus is required for the org.eruption dbus service
@@ -29,13 +29,13 @@ in
   # udev for the custom udev rules
   services.udev.enable = true;
   services.udev.packages = [
-    gtk3
     eruption.eruption
   ];
 
   # Install the binaries eruption, eruptionctl etc.
   # This also installs the polkit actions required for dbus authentication
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
+    gtk3
     eruption.eruption
   ];
 
